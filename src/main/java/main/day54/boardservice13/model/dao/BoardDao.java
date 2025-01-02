@@ -78,6 +78,7 @@ public class BoardDao {
         //3. 게시물 개별 조회
         public BoardDto findid(int bno){
         //구현하기 전
+            String sql = "select * from board where bno = ?";
         return null;
         }
 
