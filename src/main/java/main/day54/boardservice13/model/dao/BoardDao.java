@@ -78,7 +78,13 @@ public class BoardDao {
         //3. 게시물 개별 조회
         public BoardDto findid(int bno){
         //구현하기 전
-            String sql = "select * from board where bno = ?";
+            try {
+                String sql = "select * from board where bno = ?";
+                PreparedStatement ps = con.prepareStatement(sql); // 2. sql 기재한다.
+                ResultSet rs = ps.executeQuery();
+            }
+            catch(SQLException e){e.printStackTrace();}
+
         return null;
         }
 
