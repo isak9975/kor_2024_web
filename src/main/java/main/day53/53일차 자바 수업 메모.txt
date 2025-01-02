@@ -1,0 +1,247 @@
+[ 프로젝트 생성 ]
+1. 인텔리제이에서 gradle 프로젝트 생성 , 자바프로젝트 X
+	1. Name :  kor2024_web
+	2. Location : 임의
+	3. Build system : *gradle*
+	4. JDK : 17
+	5. Gradle DSL : Groovy
+	[ Create]
+
+2. gradle 프로젝트 구조
+	- 프로젝트명
+		- gradle 폴더( gradle 관련 라이브러리 ) / 신경X
+		- src 폴더
+			- main 폴더
+				- java 폴더       : 자바 코드 위주의 파일 작성
+				- resources 폴더  : HTML/CSS/JS , 설정 파일 위주의 파일 작성
+
+3. spring web 설치한다.
+    1. https://spring.io/           스프링 공식 홈페이지 접속한다.
+    2. https://start.spring.io/     상단 메뉴에 [project] --> [spring initialize] 클릭
+    3. 옵션 선택
+        Project : Gradle - Groovy
+        Language : Java
+        Spring Boot : 3.x.x
+        Project Metadata : 프로젝트 메타정보 (생략)
+        Packaging : Jar
+        Java : 17
+    4. Dependencies : 라이브러리 선택
+        [ Add dependencies...] 버튼 클릭
+            spring web 검색후 결과를 클릭 해서 Dependencies 목록에 추가한다.
+    5. 하단에 [ EXPLORE ] 클릭
+    6. 상단에 [COPY] 클릭
+    7. 현재 프로젝트 폴더 내 build.gradle 파일 클릭
+    8. 기존 코드 작성 ---> 복사한 코드 붙여넣기 ---> 화면 왼쪽 상단 코끼리(새로고침)버튼
+    * 하단에 다운로드 진행 상태 확인
+
+4. spring web 실행하기.
+    1. main를 갖는 클래스 위에 @SpringBootApplication               ( 자동완성 작성 )
+    2. main함수 안에 SpringApplication.run( 현재클래스명.class);     ( 자동완성 작성 )
+    - 현재 클래스 실행 --> 브라우저에서 http://localhost:8080 접속
+        -> Whitelabel Error Page 정상 실행
+
+5. 프로젝트내 resource 의 static 폴더 html 접속하기
+    http://localhost:8080/day52/boardview.html
+
+6. 자바 함수를 HTTP 웹 통신이 가능한 함수로 만들기
+    1. 컨트롤러 클래스명에 위에 @RestController 작성한다. ( 자동완성 작성 )
+    2. 각 함수별
+        @PostMapping("url")    : HTTP의 POST 메소드 URL 만들고 연결 가능한 함수 정의
+        @GetMapping("url")      :  HTTP의 GET 메소드 URL 만들고 연결 가능한 함수 정의
+
+JDK : 자바 개발도구 v17 ( 자바실행에 필요한 컴파일러 , 각종 미리 만들어진 라이브러리/클래스 jar ) 포함
+라이브러리 : ( 도구 ) 클래스,인터페이스 들을 모아둔 압축파일 .jar
+프레임워크 : ( 작업틀 ) 프로그램 개발 하기 위해 미리 만들어진 작업틀을 제공하는 프로그램
+    * 프레임워크 > 라이브러리 > 클래스 > 코드
+    * 코드가 작은 단위 이고 프레임워크 가장 큰 단위이다. 즉] 프레임워크 안에는 라이브러리 와 클래스들이 존재한다.
+
+Spring 프레임워크 : 자바를 이용한 라이브러리 들의 집합들로 만든 프로그램
+Spring Boot : spring 세팅/설정 를 간소화/자동화 지원하는 spring의 업그레이드 버전
+
+spring 프로젝트
+    [무료]
+    - 인텔리제이 무료 버전에서는 spring 프로젝트 생성이 불가능하다.
+    - 대안!!! : 인텔리제이 에서 gradle 프로젝트 만들고 gradle 를 통해 spring 설치한다.
+    [ 유료 ]
+    - 인텔리제이 유료 버전에서는 spring 프로젝트 생성이 가능하다.
+
+gradle 이란 ? 그루비 언어를 이용한 빌드(설치) 자동화 시스템
+    - 그루비 : java 기반으로 만들어진 객체지향 언어
+    - 외부 라이브러리/프레임워크 등 설치를 해주고 관리 해주는 프로그램
+
+[ 통신 ]
+    1. 통신이란? 매체를 사용하여 정보를 서로 주고 받는 과정/행위
+    2. 사용처 : 우편,전화,전신 등등
+[ 인터넷 ]
+    1. 인터넷이란? 컴퓨터로 연결하여 통신 프로토콜을 이용해 정보를 주고받는 과정/행위
+[ 네트워크 ]
+    1. 네트워크란? 인터넷을 통해 연결된 구조에서 다양한 정보를 주고 받는 과정/행위
+    2. 특징
+        1. 글로벌 연결성 : 전 세계의 컴퓨터들과 연결 하므로 지리적 제약이 없고 정보 공유가 가능하다.
+        2. 분산 구조 : 중앙 집중식 이 아닌 분산 구조로 장애가 발생할때 전체 시스템의 영향을 미치지 않는다.
+        3. 다양한 서비스 : 이메일, *웹서비스* , 스트리밍(넷플릭스,유튜브) , 파일 전송 등등 제공 한다.
+        4. *프로토콜* : 표준화된 통신 규약/규칙/약속 , 서로 다른 시스템간의 원할한 통신 제공 한다.
+    3. 구성 요소
+        1. 네트워크 인프라 : 케이블 , 라우터 , 위성, 모뎀 등등 물리적인 장치 와 연결 매체가 필요하다.
+        2. *프로토콜* : 인터넷에서 데이터 통신을 가능하게 하는 규칙/규약/약속 절차
+        3. 서버란 ? 데이터를 제공하는 컴퓨터              ex] Spring Web(톰캣서버 내장) , DB서버 등등
+        4. 클라이언트란? 데이터를 요청하고 제공받는 컴퓨터   ex] 프로그램을 사용하는 일반인
+        5. 도메인(DNS) : 복잡한 인터넷 주소 체계를 일반인 사람들이 해석하기 어렵기 때문에 문자로 변환해주는 주소 제공한다.
+            ex] www.naver.com   <--- 네이버의 도메인주소
+[*프로토콜*]
+    1. 프로토콜이란 ? 네트워크에서 데이터를 교환하기 위한 규칙 및 절차
+        EX] 생활속 프로토콜 ? 1. 전화번호 번호체계 2.도로명 주소체계
+    2. 주요 포로토콜
+        1. IP       : 네트워크 컴퓨터간의 서로 통신할때 식별 번호 , 네트워크컴퓨터를 식별하는 번호
+            - 친구에게 우편(데이터) 보낼때 받는 사람의 집주소를 작성 하는것 처럼 IP는 집주소 역할을 한다.
+            - IP주소체계 형태       : 192.168.30.9
+            - 도로명주소체계 형태    : 인천광역시 부평구 OO동 12번지
+            - IP주소체계 규칙
+                1. 0~255 사이 숫자로 4자리를 가지는 구조 , IPv4
+                2. 내 IP찾기 , (1)https://ip.pe.kr (2) 윈도우버튼 --> CMD(명령프롬프트) --> ipconfig
+                3. 비공개용 ip는 (1) localhost (2) 127.0.0.1
+                    http://localhost:8080/day52/boardview.html
+                    http://127.0.0.1:8080/day52/boardview.html
+                4. 공개용 ip는 (학원기준 강사PC) 192.168.3.101            , AWS , 카페24 사설 서버PC 구매해서 배포 해야한다.
+                    http://192.168.3.101:8080/day52/boardview.html
+
+        2. PORT     : 네트워크 컴퓨터 안에서 프로그램(프로세스)를 식별하는 번호
+            - 친구에게 우편(데이터) 보내고 그 집에 방의 문이 많을때 그 방의 문 번호를 식별하는 역할
+            - 특정한 IP 주소의 서버PC에 접속하면 수많은 프로그램들이 존재하는데 그중에 어떤 프로그램과 연결하는 식별 역할
+            - 공식적인 PORT , 0 ~ 1000
+                1. FTP : 20/21
+                2. HTTP : 80
+                3. DNS : 53
+                등등 각 프로토콜 또는 프로그램 들은 각 PORT 번호를 갖는다.
+            - 사설 PORT : 1000 ~ 50000 으로 주로 사용한다.
+                1. MYSQL DB서버 PORT : 3306
+                2. Spring web(톰캣 서버) port : 8080
+            - 내 PC의 PORT 알기 : 윈도우버튼 --> CMD(명령프롬프트) --> 'netstat -ano'
+
+        3. *HTTP*   : 웹 브라우저 와 웹서버 간 데이터 전송 역할
+        4. SMTP     : 이메일 전송 역할
+        5. FTP      : 파일 전송 역할
+        6. DNS      : IP주소를 문자형식으로 변환 해주는 역할
+        7. SSL/TLS  : 인터넷을 암호화 하여 보안 제공하는 역할
+        8. HTTPS    : SSL 과 TLS 가 적용된 HTTP , 인증이 된 HTTP
+        등등 다양한 프로토콜이 존재한다.
+
+        [ HTTP ]
+            1. 웹 통신 규약/규칙/약속 , 하이퍼텍스트(HyperText Transfer Protocol )
+                --> 문자타입의 자료만 통신이 가능하다. 즉] 객체타입의 자료는 통신이 불가능하다.
+            2. 특징
+                   1. 상태가 무상태 프로토콜이다. ( 상태가 없는 / 저장기능이 없다 )
+                   2. 독립적이다, 이전 요청 과 현재 요청은 다르므로 서로 관련이 없다.
+                   3. TCP/IP 프로토콜의 종속되어 동작하며 port는 80 사용한다.
+            3. 통신 주소체계
+                URL : 웹 주소 , 네트워크 상의 자료가 어디에 있는지 알려주는 규약
+                     https://finance.naver.com/item/main.naver
+                URI : 각종 자료들의 유일한 이름이나 위치를 표시하는 규약 , URL + 자원포함
+                    https://finance.naver.com/item/main.naver?code=089590
+            4. HTTPS : HTTP의 보안이 강화된 버전이다.
+                - 통신의 인증과 암호화를 위해 만들어진 프로토콜
+                - 인증서 발급 업체로 부터 인증서 발급 받는다. ex] 건강보험, 자동차보험 처럼 홈페이지의 보험 체계
+
+            5. HTTP Header ( HTTP 통신 정보 )
+                1. HTTP METHOD          : http 이용한 통신 요청시 요청 분류 하는 함수.
+                2. HTTP HOST            : http 이용한 통신 요청 하는 서버의 URL 주소
+                3. HTTP CONTENT-TYPE    : http 이용한 요청 과 응답시 보내는 데이터의 타입 정보
+                4. HTTP BODY            : http 이용한 보내는 데이터의 내용/본문 , POST/PUT 사용가능 , GET/DELETE 사용불가능.
+
+            6. HTTP Method
+                1. GET      : REST API(HTTP) 에서는 주로 자원 호출 요청[ R ]   @GetMapping
+                2. POST     : REST API(HTTP) 에서는 주로 자원 저장 요청[ C ]   @PostMapping
+                3. PUT      : REST API(HTTP) 에서는 주로 자원 수정 요청[ U ]   @PutMapping
+                4. DELETE   : REST API(HTTP) 에서는 주로 자원 삭제 요청[ D ]   @DeleteMapping
+
+            7. HTTP 사용하는 소프트웨어, 라이브러리 , 프레임워크
+                1. 브라우저(크롬,엣지,사파리 등등) 2.fetch함수 3. spring web(톰캣서버) 등등
+
+            8. HTTP 통신을 테스트 하는 방법 *
+                1. [크롬 브라우저 ] 인터넷 구글에서 'talend api' 검색
+                2. 첫번째 홈페이지 클릭 , https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm?hl=ko
+                3. [확장 프로그램 추가] -> 설치 진행
+
+                [ talend api 사용하기 ]
+                1. [크롬 브라우저 ] -> [확장 프로그램 ] -> 'talend api' 클릭 ( 없으면 설치가 안된 상태 )
+                2. HTTP URL 테스트 하기
+
+        [ 실습1 ] spring web 에서 post , get , put , delete 메소드를 사용하여 HTTP 통신 주소 만들기
+                                            내PC , 톰캣서버
+               사용자 --------------------> SPRING WEB
+                                           localhost:8080
+
+               사용자 --------------------> http://localhost:8080
+                                        [ Whitelabel Error Page ]
+
+               사용자 -----------------------------------> postMethod() 실행
+                    [POST] http://localhost:8080/day52
+
+               사용자 -----------------------------------> getMethod() 실행
+                    [GET] http://localhost:8080/day52
+
+               사용자 -----------------------------------> putMethod() 실행
+                    [PUT] http://localhost:8080/day52
+
+               사용자 -----------------------------------> deleteMethod() 실행
+                    [delete] http://localhost:8080/day52
+
+        [ 웹 과제1 ]
+            Spring web 에서 post , get , put , delete 메소드를 사용하여 HTTP 주소 만들기
+            조건1 : 프로젝트내 src -> main -> java -> day53task 폴더 생성하여 진행 하시오.
+            조건2 : 앞전에 실행한 스프링 서버는 꼭 종료 하고 테스트 진행
+            조건3 : 'locahost:8080/day53task' 주소로 post,get,put,delete 매핑 함수 만들기
+            조건4 : 통신 결과는 ' OOO 메소드 통신 성공 ' 반환/응답 하시오.
+            조건5 : 크롬 확장 프로그램 : talend API Tester 이용한 테스트 진행 하시오.
+
+            - 정답이 필요한 경우 메일/카톡 로 요청하기.
+            - 제출 : itdanja@kakao.com , 01/02(목) 19:00까지
+            - 제출파일 : 구현한 코드 파일이 위치한 본인 github 상세 주소
+
+
+            9. HTTP를 이용한 데이터 통신
+                *request     요청
+                    + 데이터 보내는 방법 2가지
+                        (1) 쿼리스트링 방식, url 경로상의 ? 이용하여 경로와 매개변수 구분
+                            1.URL ? 매개변수명 = 값1 & 매개변수명2=값2
+                              http://localhost:8080/findid?bno=1
+                              ? 부터 쿼리스트링 시작된다.
+                            2.Controller 에서 쿼리 스트링 매개변수 반환 방법
+                              - 메소드명( @RequestParam 타입 매개변수명){}
+                              - 메소드명(타입 매개변수명){ }
+                                -http://localhost:8080/findid?bno=1
+                                -메소드명(int bno){}
+
+                        (2) body 방식, header 안에 내용물 추가하는 방법, HTTP(규약/규칙/약속)
+                            - HTTP method 의 POST 와 PUT 에서만 지원하는 기능. 즉] GET, DELETE 는 BODY 가 없다.
+                            1. 쿼리스트링 과 다르게 URL 경로상의 데이터를 표시하지 않는다. [ 쿼리스트링 방식보다 보안성이 좋다. ]
+                                - body의 content-type 명시하여 데이터를 보내준다.
+                                - 주로 content-type : 'application/json'      : json(자바스크립트 객체)
+                            2. content-type : 'application/json' 으로 하고 body 에 {'속성명':값, '속성명':값}
+
+                            3. Controller 메소드에서 body 의 데이터를 매개변수로 반환 방법
+                                - 메소드명( @RequestBody 타입 매개변수명){ }
+
+
+
+                *response    응답
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

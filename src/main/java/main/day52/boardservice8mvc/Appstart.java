@@ -1,6 +1,6 @@
 package main.day52.boardservice8mvc;
 
-import day52.boardservice8mvc.view.BoardView;
+import main.day52.boardservice8mvc.view.BoardView;
 
 public class Appstart {
     public static void main(String[] args) {

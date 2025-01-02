@@ -1,7 +1,7 @@
 package main.day52.boardservice8mvc.view;
 
-import day52.boardservice8mvc.controller.BoardController;
-import day52.boardservice8mvc.model.BoardDto;
+import main.day52.boardservice8mvc.controller.BoardController;
+import main.day52.boardservice8mvc.model.BoardDto;
 
 import java.util.ArrayList;
 import java.util.Scanner;

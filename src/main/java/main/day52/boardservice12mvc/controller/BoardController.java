@@ -1,7 +1,7 @@
 package main.day52.boardservice12mvc.controller;
 
-import day52.boardservice12mvc.model.BoardDao;
-import day52.boardservice12mvc.model.BoardDto;
+import main.day52.boardservice12mvc.model.BoardDao;
+import main.day52.boardservice12mvc.model.BoardDto;
 
 import java.util.ArrayList;
 
