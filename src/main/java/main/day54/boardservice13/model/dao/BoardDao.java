@@ -75,5 +75,11 @@ public class BoardDao {
                 return list; // 조회한 값 반환
         }
 
+        //3. 게시물 개별 조회
+        public BoardDto findid(int bno){
+        //구현하기 전
+        return null;
+        }
+
 
 }//end class
