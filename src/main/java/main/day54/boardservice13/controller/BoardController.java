@@ -2,10 +2,7 @@ package main.day54.boardservice13.controller;
 
 import main.day54.boardservice13.model.dao.BoardDao;
 import main.day54.boardservice13.model.dto.BoardDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -33,7 +30,7 @@ public class BoardController {
 
     //3. 게시물 개별 조회 _ 누구를 조회할지 bno가 매개변수로 필요로 한다.
     @GetMapping("/findid")
-    //[TEST] Talend Api Tester : [Get] http://localhost:8080/findid?bno=조회할번호
+    //[TEST] Talend Api Tester : [Get] http://localhost:8080/findid?bno=1
 
     public BoardDto findid(int bno){
         System.out.println("BoardController.findid");
@@ -41,7 +38,29 @@ public class BoardController {
         BoardDto result = BoardDao.getInstance().findid(bno);
         return result;
     }
+    //4. 게시물 수정  @PUT MAPPING   [ CURD 에서 U ]
+    @PutMapping("/update")
+    //[TEST] Talend Api Tester :
+    //  [PUT] http://localhost:8080/update
+    //  [Header] Content-Type : application/json
+    //  [body] {"bno":3,"btitle":"수정한제목","bcontent":"수정한내용"}
 
+    public boolean update(@RequestBody BoardDto boardDto){
+        System.out.println("BoardController.update");
+        System.out.println("boardDto = " + boardDto);
+        boolean result = BoardDao.getInstance().update(boardDto);
+        return result;
+    }
+
+    //5. 게시물 삭제  @DELETE MAPPING    [ CURD 에서 D ]
+    //[TEST] Talend Api Tester : [Delete] http://localhost:8080/delete?bno=1
+    @DeleteMapping("/delete")
+    public boolean delete(@RequestParam int bno){
+        System.out.println("BoardController.delete");
+        System.out.println("bno = " + bno);
+        boolean result = BoardDao.getInstance().delete(bno);
+        return result;
+    }
 
 
 

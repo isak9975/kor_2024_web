@@ -65,8 +65,8 @@ public class BoardDao {
                         rs.getString("bcontent"),
                         rs.getString("bwriter"),
                         rs.getString("bdate"),
-                        null //->패스워드는 보안상 조회시 제외
-                    );
+                        null     );//->패스워드는 보안상 조회시 제외
+
                     //6. 만든 Dto에 ArrayList에 대입
                     list.add(boardDB);
                 }//조회 끝
@@ -79,14 +79,54 @@ public class BoardDao {
         public BoardDto findid(int bno){
         //구현하기 전
             try {
-                String sql = "select * from board where bno = ?";
-                PreparedStatement ps = con.prepareStatement(sql); // 2. sql 기재한다.
-                ResultSet rs = ps.executeQuery();
+                String sql = "select * from where bno=?";//(1) sql작성한다
+                PreparedStatement ps = con.prepareStatement(sql);//(2) sql 기재한다
+                ps.setInt(1, bno); //(3) 기재된 sql의 매개변수를 대입한다
+                ResultSet rs = ps.executeQuery();//(4) 기재된 sql 실행하고 결과를 반환 받는다
+                if(rs.next()){//(5) 실행결과에 따른 제어한다
+                    BoardDto boardDB = new BoardDto(
+                            rs.getInt("bno"),
+                            rs.getString("btitle"),
+                            rs.getString("bcontent"),
+                            rs.getString("bwriter"),
+                            rs.getString("bdate"),null);
+                }
             }
-            catch(SQLException e){e.printStackTrace();}
-
-        return null;
+            catch(SQLException e ){e.printStackTrace();}
+                return null;
         }
 
+        //4. 게시물 수정
+        public boolean update(BoardDto boardDto){
+            try {
+
+                String sql = "update board set btitle =?, bcontent =?, where bno=? ";//(1)sql작성
+                PreparedStatement ps = con.prepareStatement(sql);//(2)sql기재
+                ps.setString(1,boardDto.getBtitle());//(3)기재된 sql의 매개변수를 대입
+                ps.setString(2,boardDto.getBcontent());
+                ps.setInt(3,boardDto.getBno());
+                int count = ps.executeUpdate();//(4)기재된 sql 실행하고 결과 반환
+                if(count==1){//(5)실행 결과에 따른 제어
+                    return true;
+                }
+            }
+            catch(SQLException e){e.printStackTrace();}
+            return false;
+            }
+
+        //5. 게시물 삭제
+        public boolean delete(int bno){
+            try {
+                String sql = "delete from board where bno =? ";//(1)sql작성
+                PreparedStatement ps = con.prepareStatement(sql);//(2)sql기재
+                ps.setInt(1, bno);//(3)기재된 sql의 매개변수를 대입
+                int count = ps.executeUpdate();//(4)기재된 sql 실행하고 결과 반환
+
+                if (count == 1) {//(5)실행 결과에 따른 제어
+                    return true;
+                }
+            }catch(SQLException e){e.printStackTrace();}
+            return false;
+        }
 
 }//end class
