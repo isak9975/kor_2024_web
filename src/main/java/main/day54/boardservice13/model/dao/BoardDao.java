@@ -79,7 +79,7 @@ public class BoardDao {
         public BoardDto findid(int bno){
         //구현하기 전
             try {
-                String sql = "select * from where bno=?";//(1) sql작성한다
+                String sql = "select * from board where bno=?";//(1) sql작성한다
                 PreparedStatement ps = con.prepareStatement(sql);//(2) sql 기재한다
                 ps.setInt(1, bno); //(3) 기재된 sql의 매개변수를 대입한다
                 ResultSet rs = ps.executeQuery();//(4) 기재된 sql 실행하고 결과를 반환 받는다
@@ -90,17 +90,18 @@ public class BoardDao {
                             rs.getString("bcontent"),
                             rs.getString("bwriter"),
                             rs.getString("bdate"),null);
+                    return boardDB;
                 }
             }
             catch(SQLException e ){e.printStackTrace();}
-                return null;
+            return null;
         }
 
         //4. 게시물 수정
         public boolean update(BoardDto boardDto){
             try {
-
-                String sql = "update board set btitle =?, bcontent =?, where bno=? ";//(1)sql작성
+                            //let sampleBoard = {"bno" : 3 ,  "btitle" : "수정한제목22" ,  "bcontent" : "수정한내용22" }
+                String sql = "update board set btitle =?, bcontent =? where bno=? ";//(1)sql작성
                 PreparedStatement ps = con.prepareStatement(sql);//(2)sql기재
                 ps.setString(1,boardDto.getBtitle());//(3)기재된 sql의 매개변수를 대입
                 ps.setString(2,boardDto.getBcontent());
@@ -111,6 +112,7 @@ public class BoardDao {
                 }
             }
             catch(SQLException e){e.printStackTrace();}
+
             return false;
             }
 
