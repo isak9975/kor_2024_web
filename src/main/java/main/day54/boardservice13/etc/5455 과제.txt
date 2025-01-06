@@ -87,3 +87,62 @@ public class BoardController{
 }
 	
 <3>
+@RestController
+public class BoardController{
+	@PostMapping("/write")
+	public boolean write(@RequestBody BoardDto boardDto){
+		System.out.println("BoardController.write");
+		System.out.println("boardDto = " + boadDto);
+		boolean result = BoardDao.getInstance().write(boardDto);
+		return result;
+	}
+	
+	@GetMapping("/findAll")
+	public ArrayList<BoardDto> findAll(){
+		ArrayList<BoardDto> result = BoardDao.getInstance().findAll();
+		return result;
+	}
+	
+	@GetMapping("/findid")
+	public BoardDto findid(int bno){
+		System.out.println("BoardController.findid");
+		System.out.println("bno = " + bno);
+		BoardDto result = BoardDao.getInstance().findid(bno);
+		return result;
+	}
+	
+	@PutMappingpublic boolean update(@RequestBody BoardDto boardDto){
+		System.out.println("BoardController.findid");
+		System.out.println("bno = " + bno);
+		BoardDto result = BoardDao.getInstance.findid(bno);
+		return result;
+	}
+	
+	@DeleteMapping("/delete")
+	public boolean delete(@RequestParam int bno){
+		System.out.prinln("BoardCointroller.delete");
+		System.out.println("bno = " + bno);
+		boolean result = BoardDao.getInstance().delete(bno);
+		return result;
+	}
+}
+
+
+
+BoardDao
+<1>
+public class BoardDao{
+	
+	private Connection con;
+	
+	private static BoardDao boardDao = new BoardDao();
+	public static BoardDao getInstance(){return boardDao;}
+	private BoardDao(){
+		try{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConncetion(
+				"Jdbc:mysql://localhost:3306
+	
+
+<2>
+<3>
