@@ -9,3 +9,5 @@ create table student(
     seng int,
     primary key (sno));
     
+    select * from student;
+    

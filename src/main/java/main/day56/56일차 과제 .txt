@@ -1,0 +1,169 @@
+<목차>
+1. RestController
+2. RestDto
+----------------------------------------------------------------
+RestController
+<1>
+@RestController
+@RequestMapping("/day56/rest4")
+public class RestController4{
+
+    @GetMapping("")
+    public boolean  getRest4(@RequestParam  String key1, @RequestParam String key2){
+        System.out.println("RestController4.getRest4");
+        System.out.println("key1=" + key1 + ", key2=" + key2);
+        return true;
+    }
+
+    @GetMapping("/dto")
+    public boolean getRest5(RestDto restDto){
+        System.out.println("restDto =" + restDto);
+        System.out.println("RestController4.getRest4");
+        return false;
+    }
+
+    @PostMapping("")
+    public String postRest4(@RequestBody RestDto restDto){
+        System.out.println("restDto =" + restDto);
+        System.out.println("RestController4.postRest4");
+        return "RestDto 보내기 완료"
+    }
+}//end class
+
+<2>
+@RestController
+@RequestMapping("/day56/rest4")
+public class RestController4{
+
+    @GetMapping("")
+    public boolean getRest4(@RequestParam String key1, @RequestPraram  String key2){
+        System.out.println("RestController4.getRest4");
+        System.out.println("key1 =" + key1 + ", key2=" + key2);
+        return true;
+    }
+
+    @GetMapping("/dto")
+    public boolean getRest5(RestDto restDto){
+        System.out.println("restDto=" + restDto);
+        System.out.println("RestController4.getRest4");
+        return false;
+    }
+
+    @PostMapping("")
+    public String postRest4(@RequestBody RestDto restDto){
+        System.out.println("restDto =" + restDto);
+        System.out.println("RestController4.postRest4");
+        retur "restDto 보내기 완료";
+    }
+
+}//end class
+
+<3>
+@RestController
+@RequestMapping("day56/rest4")
+public class RestController4{
+
+    @GetMapping("")
+    public boolean getRest4(@RequestParam String key1, @RequestParam String key2){
+        System.out.println("RestController4.getRest4");
+        Systm.out.println("key1 =" + key1 + ", key2=" + key2);
+        return true;
+    }
+
+    @GetMapping("/dto")
+    public boolean getRest5(RestDto restDto){
+        System.out.println("restDto =" + restDto);
+        System.out.println("RestController4.getRest4");
+        return false;
+    }
+
+    @PostMapping("")
+    public String psotRest4(@RequestBody RestDto restDto){
+        System.out.println("restDto ="+ restDto);
+        System.out.println("RestController4.postRest4");
+        return "restDto 보내기 완료";
+    }
+}//end class
+
+
+
+RestDto
+<1>
+public class RestDto{
+
+    private String key1;
+    private String key2;
+
+    public RestDto(){}
+    public RestDtp(String key1, String key2){
+        this.key1 = key1;
+        this.key2 = key2;
+    }
+
+    public String getKey1(){return key1;}
+    public void setKey1(String key1){this.key1 = key1;}
+
+    public String getKey2(){return key2;}
+    public void setKey2(String key2){this.key2 = key2;}
+
+    @Override
+    public String toString(){
+        return "RestDto{" +
+                "key1='" key1 + '\'' +
+                ", key2='" + key2 + '\''+
+                '}';
+    }
+}//end class
+
+<2>
+public class RestDto{
+
+    private String key1;
+    private String key2;
+
+    public RestDto(){}
+    public RestDto(String key1 String key2){
+        this.key1 = key1;
+        this.key2 = key2;
+    }}
+
+    public String getKey1(){return key1;}
+    public void setKey1(String key1){this.key1 = key1;}
+
+    public String getKey2(){return key2;}
+    public void setKey2(String key2){this.key2 = key2;}
+
+    @Override
+    public String toString(){
+        return "RestDto{" +
+                "key1='" + key1 + '\'' +
+                :, key2=" + key2 + '\'' +
+                '}';
+}//end class
+
+<3>
+public class RestDto{
+
+    private String key1;
+    private String key2;
+
+    public RestDto(){}
+    public RestDto(String key1, String key2){
+        this.key1 = key1;
+        this.key2 = key2;
+    }
+
+    public String getKey1(){return key1;}
+    public void setKey1(String key1){this.key1 = key1;}
+
+    public String getKey2(){return key2;}
+    public void setKey2(STring key2){this.key2 = key2;}
+
+    @Override
+    public String toString(){
+        return "RestDto{" +
+                "key1 ='" + key1 + '\'' +
+                "m key2='" + key2 + '\'' +
+                    '}';
+    }
+}

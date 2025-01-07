@@ -12,12 +12,12 @@ import lombok.*;
 
 public class StudentDto {
 
-//    SQL
-//    sno int auto_increment,
-//    sname varchar(30) not null,
-//    skor int,
-//    smath int,
-//    seng int,
+//    <SQL>
+//    sno int auto_increment,           //학생 번호
+//    sname varchar(30) not null,       //학생 이름
+//    skor int,                         //국어 점수
+//    smath int,                        //영어 점수
+//    seng int,                         //수학 점수
 //    primary key (sno));
 
     private int sno;
