@@ -1,0 +1,454 @@
+BoardController
+<1>
+@RestController
+public class BoardController{
+
+@PostMapping("/write")
+public boolean write(@RequestBody BoardDto boardDto){
+	System.out.println("BoardController.write");
+	System.out.println("boardDto="+boardDto);
+	boolean result = BoardDa.getInstance().write(boardDto);
+	return result;
+}
+
+@GetMapping("/findAll")
+public ArrayList<BoardDto> findAll(){
+ArrayList<BoardDto> result = BoardDao.getInstance().findAll();
+return result;
+}
+
+@GetMapping("/findid")
+public BoardDto findid(int bno){
+	System.out.println("BoradController.findid");
+	System.out.prinfln("bno=" + bno);
+	BoardDto result = BoardDa.getInstance().findid(bno);
+	return result;
+	}
+	
+@PutMaapping("/update")
+public boolean update(@RequestBody BoardDto boardDto){
+	System.out.println("BoardController.update");
+	System.out.println("boardDto = " + boardDto);
+	boolean result = BoardDao.getInstance().update(boardDto);
+	return result;
+}
+
+@DeleteMapping("/delete")
+public boolean delete(@RequestParam int bno){
+	System.out.println("BoardController.delete");
+	System.out.println("bno = " + bno);
+	boolean result = BoardDao.getInstance().delete(bno);
+	return result;
+}
+
+
+<2>
+@RestController
+public class BoardController{
+	
+	@PostMapping("/write")
+	public boolen write(@RequestBody BoardDto boardDto){
+		System.out.prinln("BoardController.write");
+		System.out.println("boardDto = " + boardDto);
+		boolean result = BoardDao.getInstance().write(boardDto);
+		return result;
+	}
+	
+	@GetMapping("/findAll")
+	public ArrayList<BoardDto> findAll(){
+		ArrayList<BoardDto> result = BoardDao.getInstance().findAll();
+		return result;
+	}
+	
+	@GetMapping("/findid")
+	public BoardDto indid(int bno){
+		System.out.println("BoardController.findid");
+		System.out.println("bno = "+bno);
+		BoardDto result = BoardDao.getInstance().findid(bno);
+		return result;
+	}
+		
+	@PutMapping
+	public boolean update(@RequestBody BoardDto boardDto){
+		System.out.println("Boardcontroller.findid");
+		System.out.println("bno = " + bno);
+		BoardDto result = BoardDao.getInstance.findid(bno);
+		return result;
+	}
+	
+	@DeleteMapping("/delete")
+	public boolean delete(@RequestParam int bno){
+			System.out.println("BoardController.delete");
+			System.out.prinln("bno = " + bno);
+			boolean result = BoardDao.getInstance().delete(bno);
+			return result;		
+	}
+	
+}
+	
+<3>
+@RestController
+public class BoardController{
+	@PostMapping("/write")
+	public boolean write(@RequestBody BoardDto boardDto){
+		System.out.println("BoardController.write");
+		System.out.println("boardDto = " + boadDto);
+		boolean result = BoardDao.getInstance().write(boardDto);
+		return result;
+	}
+	
+	@GetMapping("/findAll")
+	public ArrayList<BoardDto> findAll(){
+		ArrayList<BoardDto> result = BoardDao.getInstance().findAll();
+		return result;
+	}
+	
+	@GetMapping("/findid")
+	public BoardDto findid(int bno){
+		System.out.println("BoardController.findid");
+		System.out.println("bno = " + bno);
+		BoardDto result = BoardDao.getInstance().findid(bno);
+		return result;
+	}
+	
+	@PutMappingpublic boolean update(@RequestBody BoardDto boardDto){
+		System.out.println("BoardController.findid");
+		System.out.println("bno = " + bno);
+		BoardDto result = BoardDao.getInstance.findid(bno);
+		return result;
+	}
+	
+	@DeleteMapping("/delete")
+	public boolean delete(@RequestParam int bno){
+		System.out.prinln("BoardCointroller.delete");
+		System.out.println("bno = " + bno);
+		boolean result = BoardDao.getInstance().delete(bno);
+		return result;
+	}
+}
+
+
+
+BoardDao
+<1>
+public class BoardDao{
+	
+	private Connection con;
+	
+	private static BoardDao boardDao = new BoardDao();
+	public static BoardDao getInstance(){return boardDao;}
+	private BoardDao(){
+		try{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConncetion(
+				"Jdbc:mysql://localhost:3306/mydb0102",
+				"root","1234");}
+				catch(Exception e){e.printStackTrace();}
+	}
+    public boolean write(BoardDto boardDto){
+    try{
+        String sql = "insert into board(btitle,bcontent,bwirter,bpwd)"+value(?,?,?,?)";
+        PrepareStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, boardDto. getBtitle());
+        ps.setString(2, boardDto.getBcontent());
+        ps.setString(3, boardDto.getBwriter());
+        ps.setString(4, boardBto.getBpwd());
+
+        int count = ps.executeUpdate();
+
+        if(count == 1){
+        return true;
+        }
+        }catch(SQLException e){e.printStackTrace();}
+        return false;
+        }
+
+        public ArrayList<BoardDto> findAll(){
+        ArrayList<BoardDto> list = new ArrayList<>();
+        try{
+            String sql = "select*from board";
+            PreparedStatement ps = con.PrepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                BoardDto boardDB = new BoardDto(
+                rs.getInt("bno"),
+                rs.getString("btitle"),
+                rs.getString("bcontent"),
+                rs.getString("bwriter"),
+                rs.getString("bdate");
+                null);
+                list.add(boardDB);
+                }
+               } catch(WQLException e){e.printStackTrace();}
+                return list;
+            }
+
+            public BoardDto findid(int bno){
+            try{
+                String sql = "select * from board where bon=?";
+                PreparedStatement ps.con.prepareStaement(sql);
+                ps.setInt(1,bno);
+                ResultSet rs = ps.executeQuery();
+                if(re.next()){
+                    BoardDto boardDB = new BoardDto(
+                        rs.getInt("bno"),
+                        rs.getString("bcontent"),
+                        rs.getString("bwriter"),
+                        rs.getString("bdate"),null);
+                        return boardDb;
+                }
+            }
+            catch(SQLException e){e.printStackTrace();}
+            return null;
+            }
+
+            public boolean update(BoardDto boardDto){
+                try{
+                    String sql= "update board set btitle = ?, bocntent =? where bno=?";
+                    PreparedStatement ps = con.preareStatement(sql);
+                    ps.setString(1,boardDto.getBtitle());
+                    ps.setString(2,boardDto.getBcontent());
+                    ps.setInt(3,boardDto.getBno());
+
+                    int count = ps.executeUpdate();
+                    if(count ==1 ){
+                        return true;
+                    }
+                    catch(SQLException e){e.printStackTrace();}
+                    return false;
+                }
+            }
+
+            public boolean delete(int bno){
+                try{
+                    String sql = "delete from board where bno = ?";
+                    PreparedStatement ps = con.prepareStatement(sql);
+                    ps.setInt(1,bno);
+                    int count = ps.executeUpdate();
+
+                    if(count == 1){
+                        return true;
+                    }
+                    catch(SQLException e){e.printStackTrace();}
+                    return false;
+                }
+            }
+    }//end class
+
+
+<2>
+public class BoardDao{
+    private Connection con;
+
+    private static BoardDao boardDao = new BoardDao();
+    public static boardDao getInstance(){return boardDao;}
+    private BoardDao(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/mydb0102",
+                "root","1234");
+        }catch (Exception e){e.printStackTrace();}
+    }end boaddao
+
+    public boolean write(BoardDto boardDto){
+        try{
+            String sql="insert into board(btitle, bocontent,bwriter,bpwd) value (?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1,boardDto.getBtitle());
+            ps.setString(2,boardDto.getBcontent());
+            ps.setString(3, boardDto.getBwriter());
+            ps.setString(4,boardDto.getBpwd());
+
+            int count = ps.executeUpdate();
+
+            if(count == 1){
+                return trua;
+            }
+        }catch(SQLException e){e.printStackTrace();}
+        return false;
+    }
+
+    public ArrayList<BoardDto> findAll(){
+        ArrayList(BoardDto> list = new ArrayList<>();
+
+        try{
+            String sql = "select * from board";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rx.next()){
+                BoardDto boardDB = new BoardDto(
+                    rs.getInt("bno"),
+                    rs.getString("btitle"),
+                    rs.getString("bcontent"),
+                    rs.getString("bwriter"),
+                    rs.getString("bdate"),
+                    null);
+                    list.add(boardDb);
+            }
+        }catch(SQLException e){e.printStackTrace();}
+        return list;
+    }
+
+    public BoardDto findid(int bno){
+        try{
+            String sql = "select * from board where bno=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,bno);
+            ResultSet rs= ps.executeQuery(0;
+            if(rs.next()){
+                BoardDto boardDb = new BoardDto(
+                    rs.getInt("bno"),
+                    rs.getString("btitle"),
+                    rs.getString("bcontent "),
+                    rs.getString("bwriter"),
+                    rs.getString("bdate"),null);
+                    return boardDB;
+            }
+        }
+        catch(SQLException e){e.printStackTrace();}
+        return null;
+    }
+
+    public boolean update(BoardDto boardDto){
+        try{
+            String sql = "update board set btitle = ?,bcontent =? where bno=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,boardDto.getBtitle());
+            ps.setString(2,boardDto.getBcontent());
+            ps.setInt(3,boardDto.getBno());
+            int count = ps.executeUpdate();
+            if(count == 1){
+            return true;
+            }
+        }
+        catch (SQLException e){e.printStackTrace();}
+        return false;
+    }
+
+    public boolean delete(int bno){
+        try{
+            String sql = "delete from board where bno = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,bno);
+            int count = os.executeUpdate();
+            if(count==1){
+                return true;
+            }
+        }
+        catch(SQLException e){e.printStackTrace();}
+        return false;
+    }
+}end class
+
+
+<3>
+public class BoardDao{
+    private Connection con;
+
+    private static BoardDao boardDao = new BoardDao();
+    public static BoardDao getInstance(){return boardDao;}
+    private BoardDao(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/mydb0102",
+            "root","1234");
+        }catch (Exception e){e.printStackTrace();}
+    }//end boardDao
+
+    public boolean write(BoardDto boardDto){
+    try{
+        String sql = "insert into board(btitle, bcontent,bwriter,bpwd)value (?,?,?,?)";
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, boardDto.getBtitle());
+        ps.setString(2,boardDto.getBcontent());
+        ps.setString(3, boardDto.getBwriter());
+        ps.setString(4, boardDto.getBpwd());
+
+        int count= ps.executeUpdate();
+
+        if(fount==1){
+            return true;
+        }
+    }catch(SQLException e){e.printStackTrace();}
+    return false;
+    }
+
+    public ArrayList<BoardDto> indAll(){
+        ArrayList<BoardDto> list = new ArrayList<>();
+
+        try{
+            String sql = "select * from board";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                BoardDto boardDB = new BoardDto(
+                    rs.getInt("bno"),
+                    rs.getString("btitle"),
+                    rs.getString("bcontent"),
+                    rs.getSTring("bwiter"),
+                    rs.getSTring("bdate"),null);
+                    list.add(boardDB);
+            }
+        }catch(SQLException e){e.printSTackTrace();}
+        return list;
+    }
+
+    public BoardDto findid(int bno){
+        try{
+            String sql = "select*from board where bno=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,bno);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                BoardDto boardDb = new BoardDto(
+                    rs.getInt("bno"),
+                    rs.getString("btitle"),
+                    rs.getString("bcontent"),
+                    rs.getString("bwriter"),
+                    rs.getString("bdate"),null);
+                    return boardDB;
+            }
+        }catch(SQLException e){e.printStackTrace();}
+        return null;
+    }
+
+    public boolean update(BoardDto boardDto){
+        try{
+            String sql = "update board set btitle = ?,bcontent =? whrere bno = ?";
+            PreparedStatement ps = con.prepareStatemente(sql);
+            ps.setString(1,boardDto.getBtitle());
+            ps.setString(2,boardDtoe.getBcontent());
+            ps.setInt(3,boardDto.getBno());
+            int count = os.executeUpdate();
+            if(count==1){
+                return true;
+            }
+        }
+        catch(SQLException e){e.printStackTrace();}
+        return false;
+    }
+
+    public boolean delete(int bno){
+        try{
+            String  sql = "delete from board where bno = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,bno);
+            int count=ps.executeUpdate();
+
+            if(count==1){
+                return true;
+            }
+            catch(SQLException e){e.printStackTrace();}
+            return false;
+        }
+    }
+
+}//end class
