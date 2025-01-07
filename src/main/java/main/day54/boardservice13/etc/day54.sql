@@ -22,4 +22,6 @@ insert into board(btitle,bcontent,bwriter,bpwd) values('안녕제목4', '안녕�
 insert into board(btitle,bcontent,bwriter,bpwd) values('안녕제목5', '안녕내용5', '나영석', '2345');
 
 select *from board;
-select * from board where bno = 1;
+select * from board where bno = 3;
+
+update board set btitle ='수정한이름', bcontent = '수정한내용' where bno=3;

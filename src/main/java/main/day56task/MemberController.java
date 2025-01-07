@@ -32,16 +32,16 @@ public class MemberController {
 
     //내정보 보기
     @GetMapping("/day56task/findall")
-    public String[] getfindall(){
-        System.out.println("MemberController.getfindall");
-
-
-
-        String[] result = new String[
-                ];
-
-        return result;
-    }
+//    public String[] getfindall(){
+//        System.out.println("MemberController.getfindall");
+//
+//
+//
+//        String[] result = new String[
+//                ];
+//
+//        return result;
+//    }
 
     //회원탈퇴
     @DeleteMapping("/day56task/delete")
