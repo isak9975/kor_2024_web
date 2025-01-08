@@ -1,0 +1,214 @@
+@NoArgsConstructor
+@NoArgsConstructor
+@NoArgsConstructor
+
+@AllArgsConstructor
+@AllArgsConstructor
+@AllArgsConstructor
+
+@Builder
+@Builder
+@Builder
+
+
+StudentController.java
+<1>
+@RestController
+@RequestMapping("")
+public class StudentController{
+    @Autowired private StudentService studentService;
+
+    @PostMapping
+    public boolean write(@RequestBody StudentDto studentDto){
+        System.out.println("StudentController.write");
+        System.out.println("studentDto = " + studentDto);
+
+        boolean result = studentService.write(9studentDto);
+        return result;
+    }
+
+    @GetMapping()
+    public ArrayList<StudentDto> findAll(){
+        System.out.println("StudentController.findAll");
+
+        ArrayList<StudentDto> list = studentService.findAll();
+        return list;
+    }
+
+    @PutMapping
+    public boolean update(@RequestBody StudentDto studentDto){
+        System.out.println("StudentController.update");
+        System.out.println("studentDto = " + studentDto);
+
+        boolean result = studentService.update(studentDto);
+        return result;
+    }
+
+    @DeleteMapping
+    public boolean delete(@RequestParam int sno){
+        System.out.println("StudentController.delete");
+        System.out.println("sno="+sno);
+
+        boolean result = studentService.delete(sno);
+        return result;
+    }
+}//end class
+
+
+<2>
+@RestController
+@RequestMapping
+public class StudentController{
+    @Autowired private StudentService studentService;
+
+    @PostMapping
+    public boolean write(@RequestBody StudentDto studentDto){
+        System.out.println("StudentController.write");
+        System.out.println("studentDto = " + studentDto);
+
+        boolean result = studentService.write(studentDto);
+        return result;
+    }
+
+    @GetMapping
+    public ArrayList<StudentDto> findAll(){
+        System.out.println("StudentController.findAll);
+
+        ArrayList<StudentDto> list = studentService.findAll();
+        return list;
+    }
+
+    @PutMapping
+    public boolean update(@RequestBody StudentDto studentDto){
+        System.out.println("StudentController.update");
+        System.out.println("studentDto =" + studentDto;
+
+        boolean result = studentService.update(studentDto);
+        return result;
+    }
+
+    @DeleteMapping
+    public boolean delete(@Request int sno){
+        System.out.println("StudentController.delete");
+        System.out.println("sno =" + sno);
+
+        boolean result = studentService.delete(sno);
+        return result;
+    }
+}
+
+
+<3>
+@RestController
+@RequestMapping
+public class StudentController{
+
+    @Autowired private StudentService;
+
+    @PostMapping
+    public boolean write(@RequestBody StudentDto studentDto){
+        System.out.println("StudentController.write");
+        System.out.println(9"studentDto =" + studentDto);
+
+        boolean result = studentService.write((studentDto);
+        return result;
+    }
+
+    @GetMapping
+    public ArrayList<StudentDto> findAll(){
+        System.out.println(("StudentController.findAll");
+
+        ArrayList<StudentDto> list = studentService.findAll();
+        return list;
+    }
+
+    @PutMapping
+    public boolean update(@Request StudentDto studentDto){
+        System.out.println("StudentController.update");
+        System.out.println("studentDto =" + studentDto);
+
+        boolean result = studentService.update(studentDto);
+        return result;
+    }
+
+    @DeleteMapping
+    public boolean delete(@RequestParam int sno){
+        System.out.println("StudentController.delete");
+        System.out.println("sno =" + sno);
+
+        boolean result = studentService.delete(sno);
+        return result;
+    }
+}
+
+StudentDao
+<1>
+@Component
+public class StudentDao{
+
+    private Connection con;
+
+    public StudentDao(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb0107","root","1234");
+        }
+        catch(Exception e){e.printStackTrace();}
+    }
+
+    public boolean write(StudentDto studentDto){
+        String sql = "insert into student(sname,skor,seng,smath) value (?,?,?,?)";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1,studentDto.getSname());
+            ps.setInt(2,studentDto.getSkor());
+            ps.setInt(3,studentDto.getSeng());
+            ps.setInt(4,sudentDto.getSmath());
+
+            int count = ps.executeUpdate()'
+
+            if(count ==1){
+            return true;
+            }
+
+        }
+        catch(SQLException e){e.printStackTrace();}
+        return false;
+    }
+
+    public ArrayList<StudentDto> findAll(){
+        String sql = "select * from student";
+
+        ArrayList<StudentDto> list = new ArrayList<>();
+
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                StudentDto studentDto = new StudentDto(
+                rs.getInt("sno"),
+                rs.getString("sname"),
+                rs.getInt
+            }
+        }
+
+        }
+        catch(SQLException e){e.printStackTrace();}
+    }
+}//end class
+
+
+<2>
+<3>
+
+
+
+
+StudentDao.java
+<1>
+
+<2>
+<3>
