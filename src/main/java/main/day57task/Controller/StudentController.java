@@ -25,7 +25,7 @@ public class StudentController {
     public String student(){return "/day58task/student/index.html";}
 
     @GetMapping("/regist")
-    public String student1(){return "/day58task/student/regist.html";}
+    public String student1(){return "/day58task/student/register.html";}
 
     @GetMapping("/list")
     public String student2(){return "/day58task/student/list.html";}

@@ -29,7 +29,7 @@ class ViewController{
         //해당 클래스에서 RestController 안됨, 해당 메소드에도 ResponseBody 사용 안됨.
 
     @GetMapping("/student/regist")
-    public String regist(){return "/day58/student/regist.html";}
+    public String regist(){return "/day58/student/register.html";}
     @GetMapping("/student/list")
     public String list(){return "/day58/student/list.html";}
     @GetMapping("/student/update")
