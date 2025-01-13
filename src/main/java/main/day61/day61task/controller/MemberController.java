@@ -13,12 +13,13 @@ import java.util.List;
 @RestController
 public class MemberController {
 
-    @Autowired static MemberService memberService;
+    @Autowired private MemberService memberService;
     //스프링 컨테이너(메모리)에 등록된 빈(객체)을 주입한다.
 
     @PostMapping("/signup")
     public boolean signup(@RequestParam String id, @RequestParam String pwd){
         boolean result = memberService.signup(id,pwd);
+
         return result;
     }
 

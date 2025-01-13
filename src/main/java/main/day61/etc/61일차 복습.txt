@@ -1,0 +1,61 @@
+<1>
+@Service
+public class MemeberService{
+
+    @Autowired private MemberRepository memberRepository;
+
+    public boolean signup(String id, String pwd){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.id = id;
+        memberEntity.pwd = pwd;
+        memberRepository.save(memberEntity);
+        return true;
+    }
+
+    public List<MemberEntity> findAll(){
+        List<MemberEntity> list = memberRepository.findAll();
+        return list;
+    }
+}
+
+<2>
+@Service
+public class MemberService{
+    @Autowired private MEmberRepository memberRepository;
+
+    public boolean signup(String id,String pwd){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.id = id;
+        memberEntity.pwd = pwd;
+        memberRepository.save(memberEntity);
+        return treu;
+    }
+
+    public List<MemberEntity> findAll(){
+        List<MemberEntity> list = memberRepository.findAll();
+        return list;
+    }
+}
+
+<3>
+@Service
+public class MemberService{
+    @Autowired private MemberRepository memberRepository;
+
+    public boolean signup(String id, String pwd){{
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.id = id;
+        memberEntity.pwd = pwd;
+        memberRepository.save(memberEntity);
+        return true;
+    }
+
+    public List<MemberEntity> findAll(){
+        List<MemberEntity> list = memberRepository.findAll();
+        return list;
+    }
+}
+
+@Repository
+public interface MemberRepository
+extends JpaRepository<MemberEntity,String>{}

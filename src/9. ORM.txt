@@ -92,7 +92,7 @@
 
 
         1. create : 서버가 실행 될때마다 기존 테이블 삭제하고 새로운 테이블로 생성한다.
-        2. update : 서버가 실행 될때마다 기존 테이블 유지하고 변경할 사항있으면 수정한다.
+        2. update : 서버가 실행 될때마다 기존 테이블 유지하고 변경할 사항이 있을 경우 자동 수정/생성한다.
         3. none : 개발자가 직접 수동 관리한다.(기본값)
         4. create-drop : 서버가 종료될때 마다 테이블 삭제된다.
         5. validate : 서버가 실행 될때마다 엔티티 와 데이터베이스 일치 여부 확인, 수정/생성 하지 않는다.
@@ -106,13 +106,51 @@
         .save()
 
 
-
-
 클래스 : 인스턴스를 만들기 위한 객체 설계도
 인스턴스 : 클래스 기반으로 생성된 메모리 실체물
 테이블: 행과 열로 이루어진 표/테이블
 레코드 : 행(row) 단위의 자료
 속성/필드 : 열(column) 단위의 자료
+
+
+[ 엔티티 관련 어노테이션 ]
+    - 엔티티란? DB 테이블과 매핑된 객체(인스턴스)
+    - 엔티티 클래스는 DB 테이블 이고 엔티티 객체(인스턴스)는 테이블 레코드
+
+    1. @Entity  : 객체를 관계형 데이터베이스 테이블에 매핑 정의
+    2. @ID      : (고유값) 엔티티 기본키(Primary Key)를 지정
+        * 모든 테이블은 1개 이상의 pk 필드를 갖는다.
+        * JPARepository(인터페이스)는 pk 필드 1개를 필수로 한다.
+            -> 없으면 실행 불가.
+    3. @Column  : 테이블의 열(속성/필드) 매핑 정의
+        - 자료형타입을 자동으로 변환해준다.
+         <자바>           <mysql>
+         int               int
+         boolean           bit
+         byte            tinyint
+         short           smallint
+         char            char(1)
+         float           float
+         double          double
+         long            bigint
+         String     varchar(255)
+         1. @Column(columnDefinition = "DB type")
+         2. @Column( nullable = )
+            -> not null 의 제약 조건 : nullable = false
+         3. @Column( unique = )
+            -> unique 의 제약조건 : unique = true
+
+    4. @Table   : 테이블 설정을 매핑 정의
+        @Table( name= "테이블명" ) : 엔티티와 매핑된 테이블명을 정의
+        -> 생략할 경우 자동으로 테이블명이 정해진다.
+    5. @GeneratedValue(strategy = GenerationType.IDENTITY)
+        -> auto_increment : mysql 의 제약조건중 하나로써 자동번호 부여
+
+
+어노테이션 공부방법 : 암기x -> 노션/velog/티스토리 에 정리
+    1. 과제/프로젝트를 통해 상황에 딸느 어노테이션 찾아쓰는 습관
+
+
 
 
 
