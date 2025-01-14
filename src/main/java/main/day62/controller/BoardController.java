@@ -27,7 +27,7 @@ public class BoardController {
     }
 
     //R : 게시물 전체 조회
-    @GetMapping("/findAll")
+    @GetMapping("/printAll")
     public List<BoardEntity> printAll(){
         return boardService.printAll();
     }
