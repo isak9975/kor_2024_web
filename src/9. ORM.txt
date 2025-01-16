@@ -221,3 +221,17 @@
     Dto        : 데이터 이동 객체 View <----> Controller <----> Service
 
 
+
+
+[ 연관관계 ]
+
+
+
+[ resources 폴더내 data.sql ]
+    - JPA가 웹서버를 시작할때 샘플 DML 실행하는 SQL파일
+    1. resources 폴더에 data.sql 작성한다.
+    2. resources -> application.properties
+        # JPA 는 웹서버가 실행되면 초기화 모드 켬
+        spring.sql.init.mode = always
+        # JPA 는 웹서버가 실행될때 초기화 데이터를 부러 온다.(data.sql)
+        spring.jpa.defer-datasource-initialization=true;
