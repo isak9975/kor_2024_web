@@ -2,6 +2,7 @@ package main.day65.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import main.day65.model.dto.BoardDto;
 
 @Getter@Setter@Builder
 @AllArgsConstructor@NoArgsConstructor
@@ -21,6 +22,11 @@ public class BoardEntity {
     @ManyToOne
     @JoinColumn(name = "mno") //FK 필드명
     private MemberEntity memberEntity;
+
+    // entity ======> Dto
+    public BoardDto toDto(){
+        return BoardDto.builder().bno(this.bno).btitle(this.btitle).bcontent(this.bcontent).build();
+    }
 
 
 }
