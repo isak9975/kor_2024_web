@@ -1,4 +1,4 @@
-package main.day63task.service;
+package main.day63.day63task.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
